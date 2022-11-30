@@ -154,7 +154,7 @@ async function moveRight(piece) {
   const effect = [{ transform: transX }];
 
   piece.animate(effect, getTiming());
-  await sleep(501);
+  await sleep(495);
 }
 
 async function moveLeft(piece) {
@@ -165,7 +165,7 @@ async function moveLeft(piece) {
   const effect = [{ transform: transX }];
 
   piece.animate(effect, getTiming());
-  await sleep(501);
+  await sleep(495);
 }
 
 async function moveUp(piece) {
@@ -176,7 +176,7 @@ async function moveUp(piece) {
   const effect = [{ transform: transY }];
 
   piece.animate(effect, getTiming());
-  await sleep(501);
+  await sleep(495);
 }
 
 async function moveDown(piece) {
@@ -187,7 +187,7 @@ async function moveDown(piece) {
   const effect = [{ transform: transY }];
 
   piece.animate(effect, getTiming());
-  await sleep(501);
+  await sleep(485);
 }
 
 function getTiming() {
