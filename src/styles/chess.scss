@@ -1,0 +1,73 @@
+//For our chess board we have the chessboard container, the cell class, the black class, the white class
+
+#chessboard {
+  position: relative;
+  background-color: bisque;
+  width: 60vw;
+  border: 1px black solid;
+  display: grid;
+  grid-gap: 0;
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: repeat(8, 1fr);
+  grid-auto-flow: row;
+  //  justify-items: center;
+  //align-items: center;
+}
+// .cell {
+//   border: 1px black dashed;
+//   height: 5vh;
+//   width: 5vw;
+// }
+
+.cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  aspect-ratio: 1;
+}
+
+.white {
+  background-color: rgba(245, 245, 245, 0.459);
+}
+
+.black {
+  background-color: rgb(226, 123, 123);
+}
+
+.knight {
+  position: relative;
+  width: 80%;
+  //animation: 4s ease-in-out 0s move-knight1;
+}
+
+// @keyframes move-knight1 {
+//   //   0% {
+//   //     left: 0;
+//   //   }
+//   //   25% {
+//   //     left: 20%;
+//   //   }
+//   //   50% {
+//   //     top: 33%;
+//   //   }
+//   //   75% {
+//   //     top: 66%;
+//   //   }
+//   //   100% {
+//   //     top: 100%;
+//   //   }
+//   from {
+//     left: 0%;
+//   }
+//   to {
+//     left: 100%;
+//   }
+//   from {
+//     left: 100%;
+//     bottom: 0%;
+//   }
+//   to {
+//     left: 100%;
+//     bottom: 200%;
+//   }
+// }
