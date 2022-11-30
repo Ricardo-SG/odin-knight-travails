@@ -26,7 +26,7 @@ class Chessboard {
         //chessCoords[cols][rows] = 'B';
       }
 
-      newCell.textContent = `${rows} - ${cols}`;
+      //newCell.textContent = `${rows} - ${cols}`;
       this.board.appendChild(newCell);
       cols++;
 
@@ -112,26 +112,26 @@ class Chessboard {
     for (i = diffRow; i < 0; i++) {
       currentRow--;
       await moveUp(knight);
-      await knight.remove();
+      knight.remove();
       knight = this.setKnight(currentRow, currentCol);
     }
     for (i = 0; i < diffRow; i++) {
       currentRow++;
       await moveDown(knight);
-      await knight.remove();
+      knight.remove();
       knight = this.setKnight(currentRow, currentCol);
     }
 
     for (i = diffCol; i < 0; i++) {
       currentCol--;
       await moveLeft(knight);
-      await knight.remove();
+      knight.remove();
       knight = this.setKnight(currentRow, currentCol);
     }
     for (i = 0; i < diffCol; i++) {
       currentCol++;
       await moveRight(knight);
-      await knight.remove();
+      knight.remove();
       knight = this.setKnight(currentRow, currentCol);
     }
   }
@@ -154,7 +154,7 @@ async function moveRight(piece) {
   const effect = [{ transform: transX }];
 
   piece.animate(effect, getTiming());
-  await sleep(499);
+  await sleep(501);
 }
 
 async function moveLeft(piece) {
@@ -165,7 +165,7 @@ async function moveLeft(piece) {
   const effect = [{ transform: transX }];
 
   piece.animate(effect, getTiming());
-  await sleep(499);
+  await sleep(501);
 }
 
 async function moveUp(piece) {
@@ -176,7 +176,7 @@ async function moveUp(piece) {
   const effect = [{ transform: transY }];
 
   piece.animate(effect, getTiming());
-  await sleep(499);
+  await sleep(501);
 }
 
 async function moveDown(piece) {
@@ -187,7 +187,7 @@ async function moveDown(piece) {
   const effect = [{ transform: transY }];
 
   piece.animate(effect, getTiming());
-  await sleep(499);
+  await sleep(501);
 }
 
 function getTiming() {
