@@ -9,6 +9,7 @@ class Chessboard {
   createBoard() {
     let cols = 0;
     let rows = 0;
+    const objboard = this;
 
     while (cols < 8 && rows < 8) {
       let newCell = document.createElement('div');
@@ -25,8 +26,9 @@ class Chessboard {
         newCell.classList.add('black');
         //chessCoords[cols][rows] = 'B';
       }
-
-      //newCell.textContent = `${rows} - ${cols}`;
+      newCell.setAttribute('row', rows);
+      newCell.setAttribute('col', cols);
+      // newCell.textContent = `${rows} - ${cols}`;
       this.board.appendChild(newCell);
       cols++;
 
@@ -35,6 +37,14 @@ class Chessboard {
         rows++;
       }
     }
+  }
+
+  reset() {
+    const node = this.board;
+    while (node.firstChild) {
+      node.removeChild(node.firstChild);
+    }
+    this.createBoard();
   }
 
   setKnight(r, c) {
@@ -56,47 +66,50 @@ class Chessboard {
     return knight;
   }
 
-  // async moveKnight(r1, c1, r2, c2) {
-  //   // r1 and c1 are the init values where the knight must be
-  //   // r2, c2 are the final values where the knight is gonna be put
-  //   let knight = document.getElementById(`knight-${r1}-${c1}`);
-  //   let cell = document.getElementById(`cell-${r2}-${c2}`);
-  //   console.log(cell);
-  //   await sleep(900); // load web, remember to delete
-
-  //   if (r1-r2 < 0)
-
-  //     await moveRight(knight);
-
-  //   knight.remove();
-  //   let knight2 = this.setKnight(r2, c2);
-
-  //   await moveUp(knight2);
-  //   knight2.remove();
-  //   let knight3 = this.setKnight(3, 5);
-
-  //   await moveUp(knight3);
-  //   knight3.remove();
-  //   let knight4 = this.setKnight(2, 5);
-
-  //   await sleep(1);
-  // }
-
   async moveKnight(moves) {
     let knight = document.querySelector('[id^=knight');
     let iRow = knight.getAttribute('row');
     let iCol = knight.getAttribute('col');
-
+    let attilaCount = { count: 0 };
+    this.attila(iRow, iCol, attilaCount);
     for (let i = 0; i < moves.length; i++) {
-      await this.xmoveKnight(knight, iRow, iCol, moves[i].row, moves[i].col);
+      await this.xmoveKnight(
+        knight,
+        iRow,
+        iCol,
+        moves[i].row,
+        moves[i].col,
+        attilaCount
+      );
+
       iRow = moves[i].row;
       iCol = moves[i].col;
+
       knight = document.querySelector('[id^=knight');
       await sleep(500);
     }
   }
 
-  async xmoveKnight(knight, iRow, iCol, fRow, fCol) {
+  attila(r, c, count) {
+    // "The grass did not grow where Attila had passed"
+    let cell = document.getElementById(`cell-${String(r)}-${String(c)}`);
+    cell.classList.remove('white');
+    cell.classList.remove('black');
+
+    if (count.count === 0) {
+      cell.classList.add('attila-red');
+      cell.classList.remove('attila-black');
+    } else if (count.count % 3 === 0) {
+      cell.classList.remove('attila-red');
+      cell.classList.add('attila-black');
+    } else {
+      cell.classList.add('attila-red');
+      cell.classList.remove('attila-black');
+    }
+    count.count++;
+  }
+
+  async xmoveKnight(knight, iRow, iCol, fRow, fCol, attilaCount) {
     // iRow --> initial row
     // iCol --> initial Col
     // fRow --> final row
@@ -109,17 +122,21 @@ class Chessboard {
     let currentRow = iRow;
     let currentCol = iCol;
 
+    //this.attila(currentRow, currentCol, attilaCount);
+
     for (i = diffRow; i < 0; i++) {
       currentRow--;
       await moveUp(knight);
       knight.remove();
       knight = this.setKnight(currentRow, currentCol);
+      this.attila(currentRow, currentCol, attilaCount);
     }
     for (i = 0; i < diffRow; i++) {
       currentRow++;
       await moveDown(knight);
       knight.remove();
       knight = this.setKnight(currentRow, currentCol);
+      this.attila(currentRow, currentCol, attilaCount);
     }
 
     for (i = diffCol; i < 0; i++) {
@@ -127,29 +144,24 @@ class Chessboard {
       await moveLeft(knight);
       knight.remove();
       knight = this.setKnight(currentRow, currentCol);
+      this.attila(currentRow, currentCol, attilaCount);
     }
     for (i = 0; i < diffCol; i++) {
       currentCol++;
       await moveRight(knight);
       knight.remove();
       knight = this.setKnight(currentRow, currentCol);
+      this.attila(currentRow, currentCol, attilaCount);
     }
   }
 }
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
-// async function moveRightUp(piece) {
-//   await moveRight(piece);
-
-//   await moveUp(piece);
-// }
 
 async function moveRight(piece) {
   let trans = calcTranslate(piece);
   let transX = `translateX(${trans}px)`;
-
-  console.log(transX);
 
   const effect = [{ transform: transX }];
 
@@ -160,7 +172,6 @@ async function moveRight(piece) {
 async function moveLeft(piece) {
   let trans = calcTranslate(piece);
   let transX = `translateX(-${trans}px)`;
-  console.log(transX);
 
   const effect = [{ transform: transX }];
 
@@ -171,7 +182,6 @@ async function moveLeft(piece) {
 async function moveUp(piece) {
   let trans = calcTranslate(piece);
   let transY = `translateY(-${trans}px)`;
-  console.log(transY);
 
   const effect = [{ transform: transY }];
 
@@ -182,7 +192,6 @@ async function moveUp(piece) {
 async function moveDown(piece) {
   let trans = calcTranslate(piece);
   let transY = `translateY(${Math.floor(trans)}px)`;
-  console.log(transY);
 
   const effect = [{ transform: transY }];
 

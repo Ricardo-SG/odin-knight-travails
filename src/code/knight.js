@@ -3,8 +3,8 @@
 class Coords {
   // Coords object contain row and col
   constructor(r, c) {
-    this.row = r;
-    this.col = c;
+    this.row = parseInt(r);
+    this.col = parseInt(c);
   }
 
   compare(coords) {
@@ -14,8 +14,8 @@ class Coords {
 
   add(coords) {
     // We add two coords together
-    this.row += coords.row;
-    this.col += coords.col;
+    this.row += parseInt(coords.row);
+    this.col += parseInt(coords.col);
   }
 
   // the tree is the one who defines the bounds of what is valid and what not depending on its own rules (right now, Knight chess movement)
@@ -32,8 +32,8 @@ class Coords {
   }
 
   copy(coords) {
-    this.row = coords.row;
-    this.col = coords.col;
+    this.row = parseInt(coords.row);
+    this.col = parseInt(coords.col);
   }
 }
 
@@ -46,11 +46,7 @@ class Node {
     if (nextNodes != null) this.nextNodes = nextNodes;
   }
 
-  // am I even using this?
   addPath(node) {
-    if (node == null) {
-      console.log('null node: ' + node);
-    }
     if (this.nextNodes == null || this.nextNodes.length < 1) {
       this.nextNodes = [node];
     } else {
@@ -68,10 +64,6 @@ class Node {
       this.nextNodes = auxList;
     }
   }
-  //   setDestination(v) {
-  //     if (!v) this.destination = false;
-  //     else this.destination = true;
-  //   }
 }
 
 class Chesstree {
@@ -88,12 +80,9 @@ class Chesstree {
     this.type = type;
     this.root = this.createNode(oC, null);
     if (oC != dC) {
-      console.log('so this is the beginning');
       this.buildTree([this.root], 0, dC);
       this.root = this.trimTree(this.root, dC);
     }
-    console.log(this.root);
-    console.log(this.listOfCoordinates);
   }
 
   buildTree(nodeList, depth, dC) {

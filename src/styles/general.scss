@@ -1,0 +1,83 @@
+@import url('https://fonts.cdnfonts.com/css/norse');
+
+body {
+  background-image: url('../img/background.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh;
+  overflow-y: hidden;
+  margin: 0px;
+}
+
+#main-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#header {
+  display: flex;
+  align-items: center;
+  background-color: rgb(19, 19, 46);
+
+  #logo > img {
+    height: 10vh;
+  }
+  #logo {
+    margin-left: 10px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+  }
+  #title-text {
+    color: whitesmoke;
+    font-size: 5vh;
+    font-family: 'Norse', sans-serif;
+    margin-left: 35px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+  }
+}
+
+#text-explain {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: whitesmoke;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background-color: rgba(0, 0, 0, 0.452);
+  padding-left: 10px;
+  padding-bottom: 5px;
+  padding-top: 10px;
+  padding-right: 10px;
+}
+
+#user-feedback {
+  padding: 10px;
+  margin-top: 30px;
+  background-color: grey;
+  width: 85vw;
+  min-height: 10vh;
+  color: whitesmoke;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+#restart {
+  margin-top: 10px;
+  display: inline-block;
+  outline: 0;
+  border: none;
+  cursor: pointer;
+  height: 40px;
+  padding: 12px 17px;
+  border-radius: 50px;
+  background-color: #f1eeee1a;
+  color: #222;
+  font-size: 16px;
+  font-weight: 500;
+
+  &:hover {
+    background-color: #2222221a;
+  }
+}

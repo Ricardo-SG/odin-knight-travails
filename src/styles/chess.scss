@@ -1,9 +1,9 @@
 //For our chess board we have the chessboard container, the cell class, the black class, the white class
 
 #chessboard {
-  position: relative;
-  background-color: bisque;
+  background-color: rgb(156, 153, 150);
   width: 60vw;
+  max-width: 600px;
   border: 1px black solid;
   display: grid;
   grid-gap: 0;
@@ -31,43 +31,18 @@
 }
 
 .black {
-  background-color: rgb(226, 123, 123);
+  background-color: rgba(49, 47, 47, 0.644);
+}
+.attila-red {
+  background-color: #a6a6a6;
+}
+.attila-black {
+  background-image: url('../img/path.png');
+  background-size: cover;
 }
 
 .knight {
   position: relative;
   width: 80%;
-  //animation: 4s ease-in-out 0s move-knight1;
+  float: inline-end;
 }
-
-// @keyframes move-knight1 {
-//   //   0% {
-//   //     left: 0;
-//   //   }
-//   //   25% {
-//   //     left: 20%;
-//   //   }
-//   //   50% {
-//   //     top: 33%;
-//   //   }
-//   //   75% {
-//   //     top: 66%;
-//   //   }
-//   //   100% {
-//   //     top: 100%;
-//   //   }
-//   from {
-//     left: 0%;
-//   }
-//   to {
-//     left: 100%;
-//   }
-//   from {
-//     left: 100%;
-//     bottom: 0%;
-//   }
-//   to {
-//     left: 100%;
-//     bottom: 200%;
-//   }
-// }
