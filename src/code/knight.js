@@ -79,7 +79,7 @@ class Chesstree {
     // oC -> Origin Coords, dC --> Destiny Coords
     this.type = type;
     this.root = this.createNode(oC, null);
-    if (oC != dC) {
+    if (oC !== dC) {
       this.buildTree([this.root], 0, dC);
       this.root = this.trimTree(this.root, dC);
     }
